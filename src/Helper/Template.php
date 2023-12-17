@@ -11,12 +11,9 @@ class Template
         $session = new Session();
 
         $basePath = __DIR__. '/../View';
-        ob_start();
 
         include "$basePath/Layout/$layout/header.php";
         include "$basePath/$viewPath";
         include "$basePath/Layout/$layout/footer.php";
-
-        ob_end_flush();
     }
 }
