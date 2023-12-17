@@ -1,0 +1,43 @@
+version: '3'
+services:
+  enot_nginx:
+    image: nginx:latest
+    container_name: enot_nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - enot_php
+    networks:
+      - enot_network
+    volumes:
+      - ./docker/nginx/hosts:/etc/nginx/conf.d
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - .:/var/www/html
+      - ./logs:/var/log/nginx
+
+  enot_postgres:
+    image: postgres:latest
+    container_name: enot_postgres
+    ports: 
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: example
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: example
+    volumes:
+      - ./docker/postgres/postgres-data:/var/lib/postgresql/data
+    networks:
+      - enot_network
+
+  enot_php:
+    build: ./docker/php
+    container_name: enot_php
+    volumes:
+      - .:/var/www/html:rw
+    env_file:
+      - .env
+    networks:
+      - enot_network
+
+networks:
+  enot_network:
