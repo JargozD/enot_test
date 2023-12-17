@@ -8,7 +8,7 @@
         <select class="form-select" name="to1">
             <option <?= $params['to1'] ? '' : 'selected' ?>>Выберите валюту</option>
             <? foreach ($params['currencies'] as $currency) : ?>
-                <option <?= ($params['to1'] == $currency['letter_code']) ? 'selected' : '' ?> value="<?= $currency['letter_code'] ?>"><?= $currency['letter_code'] ?></option>
+                <option <?= ($params['to1'] == $currency['letter_code']) ? 'selected' : '' ?> value="<?= $currency['letter_code'] ?>"><?= $currency['name'] ?></option>
             <? endforeach ?>
         </select>
     </div>
@@ -21,7 +21,7 @@
 
     <?php if ($params['result1']) : ?>
         <div class="alert alert-success" role="alert">
-            <?= $params['result1'] . ' ' . $params['to1'] ?>
+            <?= $params['from1'] . ' ' . 'RUB = ' . $params['result1'] . ' ' . $params['to1'] ?>
         </div>
     <? endif ?>
 
@@ -32,7 +32,7 @@
         <select class="form-select" name="to2">
             <option <?= $params['to2'] ? '' : 'selected' ?>>Выберите валюту</option>
             <? foreach ($params['currencies'] as $currency) : ?>
-                <option <?= ($params['to2'] == $currency['letter_code']) ? 'selected' : '' ?> value="<?= $currency['letter_code'] ?>"><?= $currency['letter_code'] ?></option>
+                <option <?= ($params['to2'] == $currency['letter_code']) ? 'selected' : '' ?> value="<?= $currency['letter_code'] ?>"><?= $currency['name'] ?></option>
             <? endforeach ?>
         </select>
     </div>
@@ -49,7 +49,7 @@
 
     <?php if ($params['result2']) : ?>
         <div class="alert alert-success" role="alert">
-            <?= $params['result2'] . ' RUB' ?>
+            <?= $params['from2']. ' '. $params['to2'] . ' = ' . $params['result2'] . ' RUB' ?>
         </div>
     <? endif ?>
 
